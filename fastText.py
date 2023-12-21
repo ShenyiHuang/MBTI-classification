@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from gensim.models import FastText
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-
+import matplotlib
 
 def vectorize(words):
     v = [ft.wv[word] for word in words if word in ft.wv]

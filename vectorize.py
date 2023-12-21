@@ -6,6 +6,7 @@ from gensim.models import Word2Vec
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.neural_network import MLPClassifier
+import matplotlib.pyplot as plt
 def vectorize(words):
     v = [w2v.wv[word] for word in words if word in w2v.wv]
     if len(v) == 0:
@@ -54,24 +55,24 @@ accuracy    l m l m l m l m
             ---------------
             e/i n/s f/t j/p
 '''
-# sgd_accuracy = []
-# for i in range(4):
-#     sgdClass = SGDClassifier(n_jobs=-1, early_stopping=True)
-#     sgdClass.fit(X_train, y_train0.str[i])
-
-#     y_pred = sgdClass.predict(X_test)
-#     score = round(accuracy_score(y_test0.str[i], y_pred),4)
-#     sgd_accuracy.append(score)
-#     print('SGD with l2 penalty has an accuracy ', score, ' for ', labels[i])
 
 mlp_accuracy = []
 for i in range(4):
-    mlpClass = MLPClassifier(solver='adam', max_iter=10000, learning_rate_init=0.0001
+    mlpClass = MLPClassifier(solver='adam', max_iter=10000, learning_rate_init=0.0000975
                              , beta_1=.9, beta_2=.999)
     mlpClass.fit(X_train, y_train0.str[i])
 
     y_pred = mlpClass.predict(X_test)
     score = round(accuracy_score(y_test0.str[i], y_pred),4)
     mlp_accuracy.append(score)
-    print('MLP with maxiter10000 learningrate0.0001 beta_1=.9 beta_2.=.999 has an accuracy '
+    print('MLP with maxiter10000 learningrate0.0000975 beta_1=.9 beta_2.=.999 has an accuracy '
           , score, ' for ', labels[i])
+
+fig, ax = plt.subplots(figsize = (10, 5))
+colors = ['lightskyblue', 'khaki', 'mediumaquamarine', 'plum']
+bars = ax.bar(labels, mlp_accuracy, color = colors)
+ax.bar_label(bars)
+plt.xlabel("Core Traits")
+plt.ylabel("Accuracy")
+plt.show()
+
