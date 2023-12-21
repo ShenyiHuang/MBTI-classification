@@ -66,12 +66,12 @@ accuracy    l m l m l m l m
 
 mlp_accuracy = []
 for i in range(4):
-    mlpClass = MLPClassifier(solver='adam', max_iter=10000, learning_rate_init=0.000001
+    mlpClass = MLPClassifier(solver='adam', max_iter=10000, learning_rate_init=0.0001
                              , beta_1=.9, beta_2=.999)
     mlpClass.fit(X_train, y_train0.str[i])
 
     y_pred = mlpClass.predict(X_test)
     score = round(accuracy_score(y_test0.str[i], y_pred),4)
     mlp_accuracy.append(score)
-    print('MLP with maxiter10000 learningrate0.000001 beta_1=.9 beta_2.=.999 has an accuracy '
+    print('MLP with maxiter10000 learningrate0.0001 beta_1=.9 beta_2.=.999 has an accuracy '
           , score, ' for ', labels[i])
