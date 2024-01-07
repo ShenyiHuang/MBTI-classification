@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from gensim.models import FastText
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.neural_network import MLPClassifier
 import matplotlib
 
 def vectorize(words):
@@ -54,3 +55,14 @@ accuracy    l m l m l m l m
             ---------------
             e/i n/s f/t j/p
 '''
+# mlp_accuracy = []
+# for i in range(4):
+#     mlpClass = MLPClassifier(solver='adam', max_iter=10000, learning_rate_init=0.0000975
+#                              , beta_1=.9, beta_2=.999)
+#     mlpClass.fit(X_train, y_train0.str[i])
+
+#     y_pred = mlpClass.predict(X_test)
+#     score = round(accuracy_score(y_test0.str[i], y_pred),4)
+#     mlp_accuracy.append(score)
+#     print('MLP with maxiter10000 learningrate0.0000975 beta_1=.9 beta_2.=.999 has an accuracy '
+#           , score, ' for ', labels[i])
